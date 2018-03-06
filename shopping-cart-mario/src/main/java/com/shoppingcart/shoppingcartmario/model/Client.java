@@ -1,6 +1,7 @@
 package com.shoppingcart.shoppingcartmario.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private String firstName;
     private String lastName;
     private String description;

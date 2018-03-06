@@ -24,6 +24,7 @@ public class Payment {
     private Order order;
     private String amount;
 
+
 //    public Payment(String amount, Client client, Order pedido) {
 //        this.amount = amount;
 //        this.client = client;
