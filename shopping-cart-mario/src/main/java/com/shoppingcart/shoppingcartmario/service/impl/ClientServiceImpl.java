@@ -61,7 +61,6 @@ public class ClientServiceImpl implements ClientService {
 //        return payments;
 //    }
 
-
     private boolean clientExists(String firstName, String lastName, String description) {
         return clientRepository.findByFirstNameAndLastNameAndDescription(firstName, lastName, description) != null;
     }
