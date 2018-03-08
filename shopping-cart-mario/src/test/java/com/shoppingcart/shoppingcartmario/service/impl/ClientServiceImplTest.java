@@ -76,6 +76,15 @@ public class ClientServiceImplTest {
         Mockito.verify(mockClientReository, times(1)).update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId());
     }
 
+    @Test
+    public void deleteClientTest() {
+        doNothing().when(mockClientReository)
+                .delete(1);
+        clientService.deleteClient(1);
+        Mockito.verify(mockClientReository, times(1)).delete(1);
+    }
+
+
 
 
 
