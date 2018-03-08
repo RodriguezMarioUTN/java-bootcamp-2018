@@ -5,6 +5,7 @@ import com.shoppingcart.shoppingcartmario.model.Payment;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public final class ModelUtils {
 
@@ -17,5 +18,11 @@ public final class ModelUtils {
                 .description("testDescription")
                 .payments(Collections.singletonList(new Payment()))
                 .build();
+    }
+
+    public static List<Client> createListDefaultClient() {
+        List<Client> clients = new ArrayList<>();
+        clients.add(createDefaultClient());
+    return clients;
     }
 }

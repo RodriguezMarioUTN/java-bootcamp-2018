@@ -4,17 +4,20 @@ import com.shoppingcart.shoppingcartmario.model.Client;
 import com.shoppingcart.shoppingcartmario.repository.ClientRepository;
 import com.shoppingcart.shoppingcartmario.service.ClientService;
 import com.shoppingcart.shoppingcartmario.util.ModelUtils;
+import org.apache.commons.lang3.Validate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit38ClassRunner;
 import org.junit.runner.RunWith;
 import org.mockito.*;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -48,16 +51,27 @@ public class ClientServiceImplTest {
 
     }
 
-
     @Test
     public void shouldGetClientByParameterTest() {
-        when(mockClientReository.findById(1)).thenReturn(Optional.of(ModelUtils.createDefaultClient()));
+        when(mockClientReository.findOne(1)).thenReturn(ModelUtils.createDefaultClient());
         clientService.getClient(1);
-        Mockito.verify(mockClientReository, times(1)).findById(1);
+        Mockito.verify(mockClientReository, times(1)).findOne(1);
         Mockito.verify(mockClientReository, times(1)).getOne(1);
     }
-    //este Utest deberia validar tmb el fi=uncionamiento interno del metodo como la llamada al metodo privado client exist?
-    //o los UT solo chequean que la salida osea el return del metodo si lo tiene sea el correcto y si es un void?`
 
+    @Test
+    public void getAllClientsTest() {
+        when(mockClientReository.findAll()).thenReturn(ModelUtils.createListDefaultClient());
+        clientService.getAllClients();
+        Mockito.verify(mockClientReository, times(1)).findAll();
+    }
+
+//    @Test
+//    public void updateClientTest() {
+//        Client client = ModelUtils.createDefaultClient();
+//        when(mockClientReository.update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId())).thenReturn(ModelUtils.createDefaultClient());
+//        clientService.updateClient(ModelUtils.createDefaultClient());
+//        Mockito.verify(mockClientReository, times(1)).update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId());
+//        }
 
 }

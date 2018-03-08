@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Builder
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "ITEM")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
-
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

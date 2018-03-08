@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-@Builder
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name="CLIENT")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Client {
 
     @Id

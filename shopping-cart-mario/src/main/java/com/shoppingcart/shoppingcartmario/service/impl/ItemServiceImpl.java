@@ -47,7 +47,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void deleteItem(Integer idItem) {
-        itemRepository.deleteById(idItem);
+        itemRepository.delete(idItem);
     }
 
 
@@ -56,6 +56,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     private boolean itemExists(Integer itemId) {
-        return itemRepository.findById(itemId).isPresent();
+        return itemRepository.findOne(itemId) != null;
     }
 }

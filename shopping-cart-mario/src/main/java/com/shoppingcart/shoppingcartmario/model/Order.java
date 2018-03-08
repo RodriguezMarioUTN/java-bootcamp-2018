@@ -10,11 +10,10 @@ import java.util.List;
 import java.util.Set;
 
 @Data
+@Entity
+@Table(name = "PEDIDO")
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-// 'order' is a reserved word in h2 databases that's why I'm using 'pedido' instead
-@Table(name = "PEDIDO")
 public class Order {
 
     @Id

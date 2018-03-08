@@ -74,7 +74,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void deletePayment(Integer idPayment) {
-        paymentRepository.deleteById(idPayment);
+        paymentRepository.delete(idPayment);
     }
 
     private boolean paymentExists(String amount) {
@@ -82,6 +82,6 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private boolean paymentExists(Integer paymentId) {
-        return paymentRepository.findById(paymentId).isPresent();
+        return paymentRepository.findOne(paymentId)!= null;
     }
 }

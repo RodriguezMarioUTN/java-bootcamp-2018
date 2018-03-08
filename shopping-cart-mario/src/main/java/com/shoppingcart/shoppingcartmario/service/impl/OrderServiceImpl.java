@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOrder(Integer idOrder) {
-        orderRepository.deleteById(idOrder);
+        orderRepository.delete(idOrder);
     }
 
 
@@ -56,6 +56,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private boolean orderExists(Integer orderId) {
-        return orderRepository.findById(orderId).isPresent();
+        return orderRepository.findOne(orderId)!= null;
     }
 }

@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@Builder
 @Entity
 @Table(name = "PAYMENT")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Payment {
