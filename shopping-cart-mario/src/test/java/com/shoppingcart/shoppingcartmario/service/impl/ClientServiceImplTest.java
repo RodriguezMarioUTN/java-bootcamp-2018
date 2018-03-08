@@ -66,12 +66,17 @@ public class ClientServiceImplTest {
         Mockito.verify(mockClientReository, times(1)).findAll();
     }
 
-//    @Test
-//    public void updateClientTest() {
-//        Client client = ModelUtils.createDefaultClient();
-//        when(mockClientReository.update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId())).thenReturn(ModelUtils.createDefaultClient());
-//        clientService.updateClient(ModelUtils.createDefaultClient());
-//        Mockito.verify(mockClientReository, times(1)).update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId());
-//        }
+    @Test
+    public void updateClientTest() {
+        Client client = ModelUtils.createDefaultClient();
+        doNothing().when(mockClientReository)
+                .update(client.getFirstName(), client.getLastName(),
+                        client.getDescription(), client.getId());
+        clientService.updateClient(client);
+        Mockito.verify(mockClientReository, times(1)).update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId());
+    }
+
+
+
 
 }

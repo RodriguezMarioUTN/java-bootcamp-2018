@@ -12,7 +12,7 @@ public final class ModelUtils {
 
     public static Client createDefaultClient() {
         return Client.builder()
-//                .id(1)
+                .id(1)
                 .firstName("bla")
                 .lastName("bla")
                 .description("testDescription")
@@ -23,6 +23,6 @@ public final class ModelUtils {
     public static List<Client> createListDefaultClient() {
         List<Client> clients = new ArrayList<>();
         clients.add(createDefaultClient());
-    return clients;
+        return clients;
     }
 }

@@ -15,13 +15,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class ClientTest {
 
-    @InjectMocks
     private Client client;
-
-    @Before
-    public void setUp() {
-        initMocks(this);
-    }
 
     @Test
     public void shouldCreateANewItem(){
