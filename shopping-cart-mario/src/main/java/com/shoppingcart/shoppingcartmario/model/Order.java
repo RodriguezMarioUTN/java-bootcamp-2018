@@ -3,6 +3,7 @@ package com.shoppingcart.shoppingcartmario.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "PEDIDO")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {

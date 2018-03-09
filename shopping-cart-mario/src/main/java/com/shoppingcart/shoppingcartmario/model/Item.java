@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@Builder
 @Entity
 @Table(name = "ITEM")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Item {

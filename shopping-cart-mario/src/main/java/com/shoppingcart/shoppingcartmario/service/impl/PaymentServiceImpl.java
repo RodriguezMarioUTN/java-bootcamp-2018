@@ -30,23 +30,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment createPayment(Payment payment) {
-        Validate.isTrue(!paymentExists(payment.getAmount()));
-        return paymentRepository.save(payment);
-    }
-
-    @Override
-    public Payment createPayment(Payment payment, Integer clientId, Integer  orderId) {
-        Validate.isTrue(!paymentExists(payment.getAmount()));
-        return paymentRepository.save(payment);
-    }
-
-    @Override
     public Payment createPayment(PaymentDTO paymentDTO) {
         Validate.notNull(paymentDTO);
         final Order order = orderRepository.getOne((paymentDTO.getOrderId()));
         final Client client = clientRepository.getOne(paymentDTO.getClientId());
         final Payment payment = Payment.builder()
+                .id(paymentDTO.getId())
                 .client(client)
                 .order(order)
                 .amount(Integer.valueOf(paymentDTO.getAmount()))

@@ -28,7 +28,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class ClientServiceImplTest {
 
     @Mock
-    private ClientRepository mockClientReository;
+    private ClientRepository mockClientRepository;
 
     @InjectMocks
     private ClientServiceImpl clientService;
@@ -43,45 +43,43 @@ public class ClientServiceImplTest {
 
     @Test
     public void shouldSaveAddClientByParameterTest() {
-//        when(mockClientReository.save(client)).thenReturn(client);
-//        Client returnedClient = clientService.createClient(client);
-//        Assert.assertEquals(1, returnedClient.getId());
         clientService.createClient(client);
-        Mockito.verify(mockClientReository, times(1)).save(client);
-
+        Mockito.verify(mockClientRepository, times(1)).save(client);
     }
 
     @Test
     public void shouldGetClientByParameterTest() {
-        when(mockClientReository.findOne(1)).thenReturn(ModelUtils.createDefaultClient());
+        when(mockClientRepository.findOne(1)).thenReturn(ModelUtils.createDefaultClient());
         clientService.getClient(1);
-        Mockito.verify(mockClientReository, times(1)).findOne(1);
-        //Mockito.verify(mockClientReository, times(1)).getOne(1);
+        Mockito.verify(mockClientRepository, times(1)).findOne(1);
+        Mockito.verify(mockClientRepository, times(1)).getOne(1);
     }
 
     @Test
     public void getAllClientsTest() {
-        when(mockClientReository.findAll()).thenReturn(ModelUtils.createListDefaultClient());
+        when(mockClientRepository.findAll()).thenReturn(ModelUtils.createListDefaultClient());
         clientService.getAllClients();
-        Mockito.verify(mockClientReository, times(1)).findAll();
+        Mockito.verify(mockClientRepository, times(1)).findAll();
     }
 
     @Test
     public void updateClientTest() {
         Client client = ModelUtils.createDefaultClient();
-        doNothing().when(mockClientReository)
+        when(mockClientRepository.findOne(1)).thenReturn(client);
+        doNothing().when(mockClientRepository)
                 .update(client.getFirstName(), client.getLastName(),
                         client.getDescription(), client.getId());
         clientService.updateClient(client);
-        Mockito.verify(mockClientReository, times(1)).update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId());
+        Mockito.verify(mockClientRepository, times(1)).findOne(1);
+        Mockito.verify(mockClientRepository, times(1)).update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId());
     }
 
     @Test
     public void deleteClientTest() {
-        doNothing().when(mockClientReository)
+        doNothing().when(mockClientRepository)
                 .delete(1);
         clientService.deleteClient(1);
-        Mockito.verify(mockClientReository, times(1)).delete(1);
+        Mockito.verify(mockClientRepository, times(1)).delete(1);
     }
 
 

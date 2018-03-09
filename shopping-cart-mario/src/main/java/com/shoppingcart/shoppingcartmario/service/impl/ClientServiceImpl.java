@@ -45,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
     //We need this to be transactional because of the @Modifying query
     @Transactional
     public void updateClient(Client client) {
-        //Validate.isTrue(clientExists(client.getId()));
+        Validate.isTrue(clientExists(client.getId()));
         clientRepository.update(client.getFirstName(), client.getLastName(), client.getDescription(), client.getId());
     }
 
