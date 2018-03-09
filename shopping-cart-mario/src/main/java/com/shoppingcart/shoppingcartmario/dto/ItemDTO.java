@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class PaymentDTO {
+public class ItemDTO {
+
     private Integer id;
-    private Integer clientId;
+    private String name;
     private Integer orderId;
-    private Integer amount;
+
 }

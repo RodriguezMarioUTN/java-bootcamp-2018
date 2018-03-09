@@ -51,7 +51,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void deleteClient(Integer idClient) {
-        clientRepository.deleteById(idClient);
+        clientRepository.delete(idClient);
     }
 
 //    @Override
@@ -61,12 +61,11 @@ public class ClientServiceImpl implements ClientService {
 //        return payments;
 //    }
 
-
     private boolean clientExists(String firstName, String lastName, String description) {
         return clientRepository.findByFirstNameAndLastNameAndDescription(firstName, lastName, description) != null;
     }
 
     private boolean clientExists(Integer clientId) {
-        return clientRepository.findById(clientId).isPresent();
+        return clientRepository.findOne(clientId) != null;
     }
 }
