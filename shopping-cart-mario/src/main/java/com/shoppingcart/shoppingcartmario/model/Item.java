@@ -1,5 +1,7 @@
 package com.shoppingcart.shoppingcartmario.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +21,17 @@ public class Item {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JsonBackReference
     private Order pedido;
+
+    @JsonIgnore
+    public Order getPedido() {
+        return pedido;
+    }
+    @JsonIgnore
+    public void setPedido(Order pedido) {
+        this.pedido = pedido;
+    }
 }

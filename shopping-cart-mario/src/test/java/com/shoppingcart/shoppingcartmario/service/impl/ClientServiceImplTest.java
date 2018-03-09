@@ -56,7 +56,7 @@ public class ClientServiceImplTest {
         when(mockClientReository.findOne(1)).thenReturn(ModelUtils.createDefaultClient());
         clientService.getClient(1);
         Mockito.verify(mockClientReository, times(1)).findOne(1);
-        Mockito.verify(mockClientReository, times(1)).getOne(1);
+        //Mockito.verify(mockClientReository, times(1)).getOne(1);
     }
 
     @Test

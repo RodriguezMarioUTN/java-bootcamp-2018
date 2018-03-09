@@ -1,6 +1,8 @@
 package com.shoppingcart.shoppingcartmario.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,15 +21,24 @@ public class Payment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="PEDIDO_ID", foreignKey = @ForeignKey(name="Fk_Payment_Pedido"))
     private Order order;
-    private String amount;
 
+    private Integer amount;
 
-//    public Payment(String amount, Client client, Order pedido) {
-//        this.amount = amount;
-//        this.client = client;
-//        this.pedido = pedido;
-//    }
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JsonBackReference
+    private Client client;
+
+    @JsonIgnore
+    public Client getClient(){
+        return this.client;
+    }
+
+    @JsonIgnore
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

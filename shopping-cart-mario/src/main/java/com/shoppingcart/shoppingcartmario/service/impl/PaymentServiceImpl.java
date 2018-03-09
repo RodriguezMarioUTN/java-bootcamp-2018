@@ -45,10 +45,11 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment createPayment(PaymentDTO paymentDTO) {
         Validate.notNull(paymentDTO);
         final Order order = orderRepository.getOne((paymentDTO.getOrderId()));
-//        final Client client = clientRepository.getOne((paymentDTO.getClientId()));
+        final Client client = clientRepository.getOne(paymentDTO.getClientId());
         final Payment payment = Payment.builder()
+                .client(client)
                 .order(order)
-                .amount(paymentDTO.getAmount())
+                .amount(Integer.valueOf(paymentDTO.getAmount()))
                 .build();
         return paymentRepository.save(payment);
     }

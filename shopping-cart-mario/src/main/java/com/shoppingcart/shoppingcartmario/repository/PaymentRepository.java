@@ -14,7 +14,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
     @Modifying
     @Query("UPDATE Payment SET amount = :amount WHERE id = :paymentId")
-    void update(@Param("amount") String amount, @Param("paymentId") Integer paymentId);
+    void update(@Param("amount") Integer amount, @Param("paymentId") Integer paymentId);
 
 //    @Modifying
 //    @Query("UPDATE Payment P (P.amount, P.client_id, P.pedido_id) VALUES(:amount, :clientId, :pedidoId)")

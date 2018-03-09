@@ -1,6 +1,7 @@
 package com.shoppingcart.shoppingcartmario.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,11 @@ public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+
     private String name;
+
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="ITEM_ID", foreignKey = @ForeignKey(name="Fk_Pedido_Item"))
+    @JoinColumn(foreignKey = @ForeignKey(name="Fk_Pedido_Item"), name="PEDIDO_ID")
+    @JsonManagedReference
     private List<Item> items;
 }

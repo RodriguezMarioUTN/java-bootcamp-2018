@@ -1,6 +1,9 @@
 package com.shoppingcart.shoppingcartmario.controller;
 
+import com.shoppingcart.shoppingcartmario.dto.ItemDTO;
+import com.shoppingcart.shoppingcartmario.dto.PaymentDTO;
 import com.shoppingcart.shoppingcartmario.model.Item;
+import com.shoppingcart.shoppingcartmario.model.Payment;
 import com.shoppingcart.shoppingcartmario.service.ItemService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -43,17 +46,18 @@ public class ItemController {
     }
 
     @PostMapping(value = "/item", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Item> addItem(@RequestBody Item item) {
+    public ResponseEntity<ItemDTO> addItem(@RequestParam("name") String name,
+                                        @RequestParam("orderId") Integer orderId) {
 
-        //Logging example, the value of '{}' gets filled with the output of item.toString()
-        LOGGER.info("Adding item {} ", item.toString());
+        final ItemDTO itemDTO = ItemDTO.builder()
+                .name(name)
+                .orderId(orderId)
+                .build();
 
-        System.out.println("item/// --> " + item.toString());
-
-        final Item persistedItem = itemService.createItem(item);
+        final Item persistedItem = itemService.createItem(itemDTO);
         Validate.notNull(persistedItem);
 
-        return new ResponseEntity<>(persistedItem, HttpStatus.CREATED);
+        return new ResponseEntity<>(itemDTO, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/item", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
