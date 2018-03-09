@@ -15,11 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.ui.Model;
 
-import javax.jws.WebParam;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
@@ -30,7 +26,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class PaymentServiceImplTest {
 
     @Mock
-    private PaymentRepository mockPaymentRepository;
+    private PaymentRepository paymentRepository;
 
     @Mock
     private OrderRepository orderRepository;
@@ -59,42 +55,42 @@ public class PaymentServiceImplTest {
         paymentService.createPayment(DTOUtils.toPaymentDTO(payment));
         Mockito.verify(clientRepository, times(1)).getOne(client.getId());
         Mockito.verify(orderRepository, times(1)).getOne(order.getId());
-        Mockito.verify(mockPaymentRepository, times(1)).save(payment);
+        Mockito.verify(paymentRepository, times(1)).save(payment);
 
     }
 
     @Test
     public void getPaymentTest() {
-        when(mockPaymentRepository.findOne(1)).thenReturn(ModelUtils.createDefaultPayment());
+        when(paymentRepository.findOne(1)).thenReturn(ModelUtils.createDefaultPayment());
         paymentService.getPayment(1);
-        Mockito.verify(mockPaymentRepository, times(1)).findOne(1);
-        Mockito.verify(mockPaymentRepository, times(1)).getOne(1);
+        Mockito.verify(paymentRepository, times(1)).findOne(1);
+        Mockito.verify(paymentRepository, times(1)).getOne(1);
     }
 
     @Test
     public void getAllPaymentsTest() {
-        when(mockPaymentRepository.findAll()).thenReturn(ModelUtils.createListDefaultPayment());
+        when(paymentRepository.findAll()).thenReturn(ModelUtils.createListDefaultPayment());
         paymentService.getAllPayments();
-        Mockito.verify(mockPaymentRepository, times(1)).findAll();
+        Mockito.verify(paymentRepository, times(1)).findAll();
     }
 
     @Test
     public void updatePaymentTest() {
         Payment payment = ModelUtils.createDefaultPayment();
-        when(mockPaymentRepository.findOne(1)).thenReturn(payment);
-        doNothing().when(mockPaymentRepository)
+        when(paymentRepository.findOne(1)).thenReturn(payment);
+        doNothing().when(paymentRepository)
                 .update(payment.getAmount(), payment.getId());
         paymentService.updatePayment(payment);
-        Mockito.verify(mockPaymentRepository, times(1)).findOne(1);
-        Mockito.verify(mockPaymentRepository, times(1)).update(payment.getAmount(), payment.getId());
+        Mockito.verify(paymentRepository, times(1)).findOne(1);
+        Mockito.verify(paymentRepository, times(1)).update(payment.getAmount(), payment.getId());
     }
 
     @Test
     public void deletePaymentTest() {
-        doNothing().when(mockPaymentRepository)
+        doNothing().when(paymentRepository)
                 .delete(1);
         paymentService.deletePayment(1);
-        Mockito.verify(mockPaymentRepository, times(1)).delete(1);
+        Mockito.verify(paymentRepository, times(1)).delete(1);
 
     }
 }
