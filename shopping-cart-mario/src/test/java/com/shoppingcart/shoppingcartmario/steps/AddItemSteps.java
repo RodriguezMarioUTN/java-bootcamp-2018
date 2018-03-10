@@ -18,20 +18,17 @@ import org.springframework.stereotype.Component;
 
 import static org.junit.Assert.assertEquals;
 
-@Component
+@Steps
 public class AddItemSteps {
 
     @Autowired
-    private ApplicationContext applicationContext;
+    private ItemService itemService;
 
     @Autowired
-    private ItemService itemService =  applicationContext.getBean(ItemService.class);
+    private ClientRepository clientRepository;
 
     @Autowired
-    private ClientRepository clientRepository = applicationContext.getBean(ClientRepository.class);
-
-    @Autowired
-    private OrderRepository orderRepository = applicationContext.getBean(OrderRepository.class);
+    private OrderRepository orderRepository;
 
     @Given("I have created a client and an order")
     public void createClientAndOrder() {
