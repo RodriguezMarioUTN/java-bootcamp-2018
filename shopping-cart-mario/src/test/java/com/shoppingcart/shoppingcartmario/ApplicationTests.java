@@ -1,6 +1,5 @@
-package com.github.reeda.springbootjbehave;
+package com.shoppingcart.shoppingcartmario;
 
-import com.shoppingcart.shoppingcartmario.ShoppingCartMarioApplication;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.io.CodeLocations;
@@ -28,12 +27,12 @@ import java.util.List;
  * Created by andrew on 11/18/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TurnAddItemOn extends JUnitStories {
+public class ApplicationTests extends JUnitStories {
 
     @Autowired
     private ApplicationContext applicationContext;
 
-    public TurnAddItemOn() {
+    public ApplicationTests() {
         initJBehaveConfiguration();
     }
 

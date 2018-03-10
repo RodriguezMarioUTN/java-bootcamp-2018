@@ -28,10 +28,10 @@ public class AddItemSteps {
     private ItemService itemService =  applicationContext.getBean(ItemService.class);
 
     @Autowired
-    private ClientRepository clientRepository = applicationContext.getBean(ClientRepository.class);;
+    private ClientRepository clientRepository = applicationContext.getBean(ClientRepository.class);
 
     @Autowired
-    private OrderRepository orderRepository = applicationContext.getBean(OrderRepository.class);;
+    private OrderRepository orderRepository = applicationContext.getBean(OrderRepository.class);
 
     @Given("I have created a client and an order")
     public void createClientAndOrder() {
