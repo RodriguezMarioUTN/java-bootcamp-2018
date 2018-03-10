@@ -6,14 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class PaymentDTO {
-    private Integer id;
-    private Integer clientId;
-    private Integer orderId;
-    private Integer amount;
+public class OrderDTO {
+
+    private int id;
+    private List<Integer> itemIds;
+
 }

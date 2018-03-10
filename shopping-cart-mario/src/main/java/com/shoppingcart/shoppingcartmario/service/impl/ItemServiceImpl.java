@@ -1,7 +1,10 @@
 package com.shoppingcart.shoppingcartmario.service.impl;
 
+import com.shoppingcart.shoppingcartmario.dto.ItemDTO;
 import com.shoppingcart.shoppingcartmario.model.Item;
+import com.shoppingcart.shoppingcartmario.model.Order;
 import com.shoppingcart.shoppingcartmario.repository.ItemRepository;
+import com.shoppingcart.shoppingcartmario.repository.OrderRepository;
 import com.shoppingcart.shoppingcartmario.service.ItemService;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +17,25 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
-    public ItemServiceImpl(ItemRepository itemRepository) {
+    public ItemServiceImpl(ItemRepository itemRepository, OrderRepository orderRepository) {
         this.itemRepository = itemRepository;
+        this.orderRepository = orderRepository;
     }
 
     @Override
-    public Item createItem(Item item) {
-        Validate.isTrue(!itemExists(item.getName()));
+    public Item createItem(ItemDTO itemDTO) {
+        Validate.isTrue(!itemExists(itemDTO.getName()));
+
+        final Order order = orderRepository.getOne((itemDTO.getOrderId()));
+
+        final Item item = Item.builder()
+                .name(itemDTO.getName())
+                .pedido(order)
+                .build();
+
         return itemRepository.save(item);
     }
 
@@ -47,7 +60,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void deleteItem(Integer idItem) {
-        itemRepository.deleteById(idItem);
+        itemRepository.delete(idItem);
     }
 
 
@@ -56,6 +69,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     private boolean itemExists(Integer itemId) {
-        return itemRepository.findById(itemId).isPresent();
+        return itemRepository.findOne(itemId) != null;
     }
 }

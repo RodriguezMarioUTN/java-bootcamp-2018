@@ -30,25 +30,15 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment createPayment(Payment payment) {
-        Validate.isTrue(!paymentExists(payment.getAmount()));
-        return paymentRepository.save(payment);
-    }
-
-    @Override
-    public Payment createPayment(Payment payment, Integer clientId, Integer  orderId) {
-        Validate.isTrue(!paymentExists(payment.getAmount()));
-        return paymentRepository.save(payment);
-    }
-
-    @Override
     public Payment createPayment(PaymentDTO paymentDTO) {
         Validate.notNull(paymentDTO);
         final Order order = orderRepository.getOne((paymentDTO.getOrderId()));
-//        final Client client = clientRepository.getOne((paymentDTO.getClientId()));
+        final Client client = clientRepository.getOne(paymentDTO.getClientId());
         final Payment payment = Payment.builder()
+                .id(paymentDTO.getId())
+                .client(client)
                 .order(order)
-                .amount(paymentDTO.getAmount())
+                .amount(Integer.valueOf(paymentDTO.getAmount()))
                 .build();
         return paymentRepository.save(payment);
     }
@@ -74,7 +64,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void deletePayment(Integer idPayment) {
-        paymentRepository.deleteById(idPayment);
+        paymentRepository.delete(idPayment);
     }
 
     private boolean paymentExists(String amount) {
@@ -82,6 +72,6 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private boolean paymentExists(Integer paymentId) {
-        return paymentRepository.findById(paymentId).isPresent();
+        return paymentRepository.findOne(paymentId)!= null;
     }
 }
