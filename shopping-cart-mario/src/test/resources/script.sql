@@ -1,11 +1,14 @@
-INSERT INTO ITEM as item (item.ID, item.NAME , item.PEDIDO_ID, NAME, DESCRIPTION, PRICE)
+INSERT INTO CLIENT as cli(cli.ID, cli.DESCRIPTION, cli.FIRSTNAME, cli.LASTNAME)
 VALUES
-  (1,1,'P1001','Product1','Product1','100.00'),
-  (2,1,'P1002','Product2','Product2','200.00'),
-  (3,1,'P1003','Product3','Product3','300.00')
-;
+  (1, 'FuturoJavaDev', 'mario', 'Rodriguez');
 
-INSERT INTO CLIENT (ID, DESCRIPTION, FIRSTNAME, LASTNAME)
+INSERT INTO PEDIDO as ord (ord.ID, ord.NAME) VALUES
+  (1, 'Order1');
+
+INSERT INTO ITEM as item (item.ID, item.NAME , item.PEDIDO_ID,)
 VALUES
-  (1, 'leo@gmail.com', 'leonardo', 'emanuel', '$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS')
-;
+  (1,'Item1',1),
+  (2,'Item2',1),
+  (3,'Item3',1);
+
+

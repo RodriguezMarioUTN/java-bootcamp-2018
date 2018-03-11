@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 @SpringBootApplication
 public class ShoppingCartMarioApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ShoppingCartMarioApplication.class, args);
 	}

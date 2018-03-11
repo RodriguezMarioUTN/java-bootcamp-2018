@@ -99,6 +99,11 @@
             <version>1.2.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.14.RELEASE</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -121,14 +126,14 @@
     </dependencies>
 
     <build>
-        <testResources>
-            <testResource>
-                <directory>src/test/java</directory>
-                <includes>
-                    <include>**/ddd/*.story</include>
-                </includes>
-            </testResource>
-        </testResources>
+        <!--<testResources>-->
+            <!--<testResource>-->
+                <!--<directory>src/test/java</directory>-->
+                <!--<includes>-->
+                    <!--<include>**/*.story</include>-->
+                <!--</includes>-->
+            <!--</testResource>-->
+        <!--</testResources>-->
 
         <plugins>
             <plugin>
